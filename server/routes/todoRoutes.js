@@ -6,7 +6,7 @@ router
     console.log("get all lists");
     res.end("get all lists");
   })
-  .post((req, res) => {
+  .post("/", (req, res) => {
     console.log("post list");
     res.end("post a list");
   });
@@ -16,11 +16,11 @@ router
     console.log("get a list");
     res.end("get a list");
   })
-  .put((req, res) => {
+  .put("/:id", (req, res) => {
     console.log("put a list");
     res.end("put a list");
   })
-  .delete((req, res) => {
+  .delete("/:id", (req, res) => {
     console.log("delete a list");
     res.end("delete a list");
   });
