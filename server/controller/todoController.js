@@ -3,7 +3,7 @@
 //@access Public
 const getTodos = (req, res) => {
   console.log("got get request");
-  res.end("get a response");
+  res.status(200).json({ message: "get a response" });
 };
 
 //@desc Create a todo list
@@ -11,7 +11,7 @@ const getTodos = (req, res) => {
 //@access Public
 const createTodo = (req, res) => {
   console.log("got post request");
-  res.end("post a response");
+  res.status(201).json({ message: "post a response" });
 };
 
 //@desc Get a todo list
@@ -19,7 +19,7 @@ const createTodo = (req, res) => {
 //@access Public
 const getTodo = (req, res) => {
   console.log("got single get request");
-  res.end("single get a response");
+  res.status(200).json({ message: "single get a response" });
 };
 
 //@desc Update a todo list
@@ -27,7 +27,7 @@ const getTodo = (req, res) => {
 //@access Public
 const updateTodo = (req, res) => {
   console.log("got Put request");
-  res.end("put a response");
+  res.status(200).json({ message: "put a response" });
 };
 
 //@desc Delete a todo list
@@ -35,7 +35,7 @@ const updateTodo = (req, res) => {
 //@access Public
 const deleteTodo = (req, res) => {
   console.log("got delete request");
-  res.end("delete a response");
+  res.status(200).json({ message: "delete a response" });
 };
 
 module.exports = { getTodos, createTodo, getTodo, updateTodo, deleteTodo };
