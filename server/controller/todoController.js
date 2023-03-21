@@ -31,7 +31,10 @@ const createTodo = asyncHandler((req, res) => {
   listsReadStream.on("end", () => {
     console.log("chunks", chunks[0]);
   });
-  //   const listsWriteStream = fs.createReadStream(fsDbFolder+"/todos.json","utf-8")
+  const listsWriteStream = fs.createReadStream(
+    fsDbFolder + "/todos.json",
+    "utf-8"
+  );
   //   listsReadStream.pipe(listsWriteStream)
   //   const transformed = listsReadStream.pipe(TransformStream);
 
