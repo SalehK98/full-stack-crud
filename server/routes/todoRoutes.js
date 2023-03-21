@@ -12,10 +12,10 @@ router
   });
 
 router
-  //   .get("/:id", (req, res) => {
-  //     console.log("get a list");
-  //     res.end("get a list");
-  //   })
+    .get("/:id", (req, res) => {
+      console.log("get a list");
+      res.end("get a list");
+    })
   .put("/:id", (req, res) => {
     console.log("put a list");
     res.end("put a list");
