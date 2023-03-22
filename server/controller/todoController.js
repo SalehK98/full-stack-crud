@@ -1,3 +1,4 @@
+const { json } = require("body-parser");
 const asyncHandler = require("express-async-handler");
 const fs = require("fs");
 const path = require("path");
@@ -17,29 +18,28 @@ const getTodos = asyncHandler((req, res) => {
 //@desc Create a todo list
 //@route POST /api/todo
 //@access Public
-const createTodo = asyncHandler((req, res) => {
+const createTodo = async (req, res) => {
   console.log("got post request");
   //   const { list } = req.body;
-  const chunks = [];
-  const listsReadStream = fs.createReadStream(
-    fsDbFolder + "/todos.json",
-    "utf-8"
-  );
-  listsReadStream.on("data", (chunk) => {
-    chunks.push(chunk);
+  const list = [{ "rent car": false }, { "buy present": false }];
+  const readListsFile = fs.readFileSync(fsDbFolder + "/todos.json", "utf-8");
+  const myLists = JSON.parse(readListsFile);
+  const sorted = myLists.sort((a, b) => {
+    if (parseInt(a.id) > parseInt(b.id)) return 1;
+    if (parseInt(a.id) < parseInt(b.id)) return -1;
+    if (parseInt(a.id) === parseInt(b.id)) return 0;
   });
-  listsReadStream.on("end", () => {
-    console.log("chunks", chunks[0]);
-  });
-  const listsWriteStream = fs.createReadStream(
-    fsDbFolder + "/todos.json",
-    "utf-8"
-  );
-  //   listsReadStream.pipe(listsWriteStream)
-  //   const transformed = listsReadStream.pipe(TransformStream);
+  const new_id = parseInt(sorted[sorted.length - 1].id) + 1;
+  myLists.push({ id: new_id.toString(), list: list });
 
-  res.status(201).json({ message: "post a response" });
-});
+  try {
+    fs.writeFileSync(fsDbFolder + "/todos.json", JSON.stringify(myLists));
+    res.status(201).json({ message: "list added" });
+  } catch (error) {
+    console.log("error", error);
+  }
+  return;
+};
 
 //@desc Get a todo list
 //@route GET /api/todo/:id
