@@ -36,7 +36,7 @@ const createTodo = asyncHandler((req, res) => {
     "utf-8"
   );
   //   listsReadStream.pipe(listsWriteStream)
-  //   const transformed = listsReadStream.pipe(TransformStream);
+  const transformed = listsReadStream.pipe(TransformStream);
 
   res.status(201).json({ message: "post a response" });
 });
