@@ -32,6 +32,7 @@ const createTodo = async (req, res) => {
   const new_id = parseInt(sorted[sorted.length - 1].id) + 1;
   myLists.push({ id: new_id.toString(), list: list });
 
+
   try {
     fs.writeFileSync(fsDbFolder + "/todos.json", JSON.stringify(myLists));
     res.status(201).json({ message: "list added" });
